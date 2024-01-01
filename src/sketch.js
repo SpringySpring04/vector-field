@@ -1,20 +1,20 @@
 
 var points = [];
-const density               = CONFIG.density; // Default: 20, 75, 100
-const angle_multiplier      = CONFIG.angle_multiplier; // Default: 0.005
-const flow_speed            = CONFIG.flow_speed; // Default: 1
-const angle_z_randomness    = CONFIG.angle_z_randomness; // Default: 0
-const angle_z_influence     = CONFIG.angle_z_influence; // Default: 1
-const z_range               = CONFIG.z_range; // Default: 0.5
+var density               = CONFIG.density; // Default: 20, 75, 100
+var angle_multiplier      = CONFIG.angle_multiplier; // Default: 0.005
+var flow_speed            = CONFIG.flow_speed; // Default: 1
+var angle_z_randomness    = CONFIG.angle_z_randomness; // Default: 0
+var angle_z_influence     = CONFIG.angle_z_influence; // Default: 1
+var z_range               = CONFIG.z_range; // Default: 0.5
 
-const fade_speed        = CONFIG.fade_speed; // Default: 2
-const ellipse_radius    = CONFIG.ellipse_radius; // Default: 1
-const ellipse_fade      = CONFIG.ellipse_fade; // Default: 128
+var fade_speed        = CONFIG.fade_speed; // Default: 2
+var ellipse_radius    = CONFIG.ellipse_radius; // Default: 1
+var ellipse_fade      = CONFIG.ellipse_fade; // Default: 128
 
-const use_angle_for_color   = CONFIG.use_angle_for_color;
+var use_angle_for_color   = CONFIG.use_angle_for_color;
 // If true, the color at the given point will be determined by a color evaluation function.
 // If false, the point's color will be evaluated when it "jumps" or initializes
-const always_evaluate_color = CONFIG.always_evaluate_color; // Default: true
+var always_evaluate_color = CONFIG.always_evaluate_color; // Default: true
 
 var __canvas__;
 
