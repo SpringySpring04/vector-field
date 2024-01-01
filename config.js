@@ -79,7 +79,7 @@ const CONFIG = { // DO NOT TOUCH THIS LINE.
      * @type {number}
      * @default 2
      */
-    fade_speed: 2,
+    fade_speed: 1,
 
     /**
      * The simulation works by drawing filled circles of color at the location of each
