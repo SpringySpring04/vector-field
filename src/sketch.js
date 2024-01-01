@@ -18,6 +18,8 @@ var always_evaluate_color = CONFIG.always_evaluate_color; // Default: true
 
 var __canvas__;
 
+const do_z_stuff = ()=>{ return angle_z_randomness !== 0 || angle_z_influence !== 0; };
+
 function centerCanvas() {
     // __canvas__.position((windowWidth - width) / 2, (windowHeight - height) / 2);
     resizeCanvas(windowWidth, windowHeight);
@@ -42,7 +44,7 @@ function setup() {
     for (let x = 0; x < width; x += spacing) {
         for (let y = 0; y < height; y += spacing) {
             var v = createVector(x + random(-10, 10), y + random(-10, 10));
-            v.z = r_z;
+            if (do_z_stuff()) v.z = r_z;
             if (always_evaluate_color) v.__color = color(v.x, height - v.y, lerp(255, 0, v.x / width), ellipse_fade);
             points.push(v);
         }
@@ -55,8 +57,10 @@ function wrapVector(v, min, max) {
     {
         v.x = random(1, width - 1);
         v.y = random(1, height - 1);
-        v.z += random(-angle_z_influence * 2, angle_z_influence * 2);
-        v.z = constrain(v.z, -z_range, z_range);
+        if (do_z_stuff()) {
+            v.z += random(-angle_z_influence * 2, angle_z_influence * 2);
+            v.z = constrain(v.z, -z_range, z_range);
+        }
         if (always_evaluate_color)
             v.__color = color(v.x, height - v.y, lerp(255, 0, v.x / width), ellipse_fade);
     }
@@ -71,7 +75,9 @@ function draw() {
     
     points = points.map((v, i) => {
         let angle = map(
-            noise(v.x * angle_multiplier, v.y * angle_multiplier, v.z * angle_z_influence + random(20) * angle_multiplier * angle_z_randomness),
+            do_z_stuff()
+                ? noise(v.x * angle_multiplier, v.y * angle_multiplier, v.z * angle_z_influence + random(20) * angle_multiplier * angle_z_randomness)
+                : noise(v.x * angle_multiplier, v.y * angle_multiplier, v.z * angle_multiplier),
             0, 1, 0, 720
         );
 
